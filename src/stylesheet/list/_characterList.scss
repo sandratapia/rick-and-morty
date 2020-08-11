@@ -1,0 +1,38 @@
+//CHARACTER LIST
+
+.character__list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.not__exist{
+    width: 250px;
+    height: 350px;
+    border: 3px solid #04bcd3;
+    border-radius: 15px;
+    color: #9cc949;
+    background-color: black;
+    margin: auto;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media all and (min-width: 768px){
+        width: 850px;
+        height: 300px;
+    }
+    h2{
+        font-family: 'Orbitron', sans-serif;
+        text-align: center;
+    }
+    .not-found{
+        height: 300px;
+        img{
+            height: 200px;
+            width: 300px;
+        }
+    }
+}
