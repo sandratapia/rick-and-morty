@@ -1,68 +1,102 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rick and Morty
 
-## Available Scripts
+_Página hecha con React, la cual mediante una petición a la API devuelve un listado de personajes de la serie Rick y Morty, los cuales al pinchar en cada personaje muestran sus detalles._
 
-In the project directory, you can run:
+## Tecnologías utilizadas 🚀
 
-### `npm start`
+_Este proyecto está hecho con React, JavaScript, HTML5, preprocesador Gulp, Sass y CSS3._
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Instalación 🔧
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+_Para poner en marcha el proyecto abre una terminal en la carpeta raíz de tu repositorio e instala las dependencias locales ejecutando en la terminal el comando:_
 
-### `npm test`
+```
+npm install
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+_Para arrancar el proyecto, hay que ejecutar el comando siguiente en la consola:_
 
-### `npm run build`
+```
+npm start
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+_Por último para publicar la página en GitHub Pages, ejecutamos el siguiente comando:_
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+npm run docs
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Proyecto
+_Este proyecto está divivido en componentes, la mayoría de clase. Cada uno representa una funcionalidad o componente._
+_*1. App*_
+_*2. CharacterList*_
+_*3. CharacterCard*_
+_*4. CharacterInfo*_
+_*5. Header*_
+_*6. Input filter*_
 
-### `npm run eject`
+_Por otro lado en la carpeta Data, tenemos el fetch con la petición a la API._
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+_Algunos ejemplos de código, que merece la pena destacar serían:_
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+renderCharacterInfo(props) {
+    const routeId = parseInt(props.match.params.id);
+    const size = this.state.characters.length;
+    const selectedCharacter = this.state.characters.find(
+      (character) => character.id === routeId
+    );
+    if (selectedCharacter === undefined) {
+      return (
+        <div className="go__home">
+          <Link to="/">
+            <img className="portal__home" src={Portal} alt="" />
+          </Link>
+          <div className="not__exist">
+            <h2>The character you are looking for, doesn't exist.</h2>
+            <div className="not-found">
+              <img src={NotFound} alt="" />
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <CharacterInfo
+          character={selectedCharacter}
+          size={size}
+          charactersToShow={this.allFilters()}
+        />
+      );
+    }
+  }
+```
+```
+const actualIndex = props.charactersToShow.indexOf(props.character);
+const prevId =
+  actualIndex > 0
+    ? props.charactersToShow[actualIndex - 1].id
+    : props.charactersToShow[actualIndex].id;
+const nextId =
+  actualIndex < props.charactersToShow.length - 1
+    ? props.charactersToShow[actualIndex + 1].id
+    : props.charactersToShow[actualIndex].id;
+```
+```
+handleInput(ev) {
+    const character = ev.currentTarget.value;
+    this.props.filterCharacter(character);
+  }
+  handleSpecies(ev) {
+    const specie = ev.currentTarget.value;
+    this.props.filterSpecies(specie);
+  }
+  handleSubmit(ev) {
+    ev.preventDefault();
+  }
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+_Y ya estaría!!_
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
+⌨️ Con ❤️ por [SandraTapia](https://github.com/sandratapia) 😊
